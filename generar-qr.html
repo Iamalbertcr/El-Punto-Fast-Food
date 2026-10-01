@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generar QR - El Punto Fast Food</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    background: #f5f5f7;
+    color: #141414;
+    display: flex;
+    justify-content: center;
+    padding: 40px 15px;
+  }
+  .card {
+    background: #fff;
+    max-width: 420px;
+    width: 100%;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  h1 { font-size: 1.3rem; margin-bottom: 6px; }
+  p.hint { color: #6b6b6b; font-size: 0.85rem; margin-bottom: 20px; }
+  input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+    font-family: inherit;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #e63946, #b32330);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  button:hover { filter: brightness(1.05); }
+  #qrImg {
+    width: 260px;
+    height: 260px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    display: none;
+    margin: 0 auto 14px;
+  }
+  a.descargar {
+    display: none;
+    font-size: 0.85rem;
+    color: #e63946;
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Generador de QR del menú</h1>
+    <p class="hint">Pega la URL pública donde publicaste el menú (ej. GitHub Pages, Netlify) y genera el código QR para imprimir en las mesas.</p>
+
+    <input type="url" id="url" placeholder="https://tuusuario.github.io/el-punto/">
+    <button onclick="generarQR()">Generar QR</button>
+
+    <img id="qrImg" alt="Código QR del menú">
+    <br>
+    <a id="descargar" class="descargar" download="qr-menu-el-punto.png">Descargar QR</a>
+  </div>
+
+  <script>
+    function generarQR() {
+      const url = document.getElementById('url').value.trim();
+      if (!url) {
+        alert('Escribe primero la URL pública del menú.');
+        return;
+      }
+      const src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}`;
+      const img = document.getElementById('qrImg');
+      const link = document.getElementById('descargar');
+      img.src = src;
+      img.style.display = 'block';
+      link.href = src;
+      link.style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>
