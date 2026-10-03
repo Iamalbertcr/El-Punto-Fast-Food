@@ -1,5 +1,5 @@
 const botones = document.querySelectorAll('.cat-btn');
-const categorias = document.querySelectorAll('.categoria');
+const productos = document.querySelectorAll('.item');
 
 botones.forEach(boton => {
   boton.addEventListener('click', () => {
@@ -8,12 +8,10 @@ botones.forEach(boton => {
 
     const seleccion = boton.dataset.cat;
 
-    categorias.forEach(cat => {
-      if (seleccion === 'todos' || cat.dataset.cat === seleccion) {
-        cat.style.display = 'block';
-      } else {
-        cat.style.display = 'none';
-      }
+    productos.forEach(producto => {
+      producto.style.display = seleccion === 'todos' || producto.dataset.cat === seleccion
+        ? 'flex'
+        : 'none';
     });
   });
 });

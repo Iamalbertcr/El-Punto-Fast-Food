@@ -153,7 +153,7 @@ body {
 
 .item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   background: var(--blanco);
   border-radius: 16px;
@@ -186,6 +186,12 @@ body {
   margin-bottom: 4px;
 }
 
+.item-info h3 small {
+  color: var(--gris);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
 .item-info p {
   font-size: 0.85rem;
   color: var(--gris);
@@ -200,6 +206,7 @@ body {
   background: rgba(230, 57, 70, 0.08);
   padding: 6px 12px;
   border-radius: 20px;
+  flex-shrink: 0;
 }
 
 /* ===== FOOTER ===== */
@@ -242,5 +249,12 @@ body {
   .item-img {
     width: 60px;
     height: 60px;
+  }
+  .item {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .precio {
+    margin-left: auto;
   }
 }
